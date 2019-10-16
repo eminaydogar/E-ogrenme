@@ -1,0 +1,122 @@
+﻿@model Eogrenme.ViewModel.OgrenciMyTeacherArray
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Öğretmenler</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/table.css"/>
+    
+</head>
+<body style="background:url(../../images/ogretmenler.jpg) center no-repeat">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-list-search">
+                    <thead  style="color:red;">
+                        <tr>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Bölüm</th>
+                            <th>Verdiği Dersler</th>
+
+                        </tr>
+                    </thead>
+                    <tbody style="color:aliceblue">
+                        @foreach (var ogretmen in Model.ogretmenler)
+                        {
+                            byte sayac = 0;
+
+                        <tr>
+
+                            <td>@ogretmen.Kullanıcı_Numara.Ad </td>
+                            <td>@ogretmen.Kullanıcı_Numara.Soyad </td>
+                            <td>@ogretmen.Kullanıcı_Bolum </td>
+                            <td>@ogretmen.DersID.DersAd </td>
+                            @foreach (var farklıders in Model.farklidersid)
+                            {
+                                if (ogretmen.DersID.DersId == farklıders.DersId)
+                                {
+                                    sayac++;
+
+                                    break;
+                                }
+
+
+                            }
+                            @if (sayac != 0)
+                            {
+                                <td>
+
+                                    <a href="@Url.Action("SendRequest","Ogrenci",new { Numara=ogretmen.Kullanıcı_Numara.Numara,DersID=ogretmen.DersID.DersId})"><input value="Kayıt Talep Et" type="submit" class="btn-warning" />  </a>
+
+                                    @*<button type="button" class="btn btn-warning">Kayıt Talep Et</button>*@
+
+                                </td>
+                            }
+                            @if (sayac==0)
+                            {
+                                <td style="color:green"><b>Bu Dersi Alıyorsunuz</b> </td>
+                            }
+
+                        </tr>
+                        }
+                    </tbody>
+
+
+                </table>
+
+                <div class="clearfix">
+                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a href="#">Previous</a></li>
+                        <li class="page-item"><a href="#" class="page-link">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+</body>
+</html>
+<script src="~/Areas/Content/user.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+﻿@model Eogrenme.ViewModel.OgrenciMylesson
+
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+    
+       
+        
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>Derslerim</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+        </head>
+        <body style="background:url(../../images/derslerim.jpg) center no-repeat/cover">
+            <div class="bs-example">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center; color:blanchedalmond"><b>ALDIĞIM DERSLER DÖKÜMANLARIM</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @foreach (var dersler in Model.dersler)
+                                {<div class="dropdown">
+                                        <a class="btn btn-secondary dropdown-toggle" style="width:100%" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            @dersler.DersID.DersAd
+                                        </a>
+                                @foreach (var pdfs in Model.pdfs)
+
+                                {
+                                    if (dersler.DersID.DersId == pdfs.Ders_id.DersId)
+                                    {
+                                     <div>
+                                         <a style="background-color:antiquewhite" class="dropdown-item" href="@Url.Action("DownloadFile","Ogrenci",new { ad = pdfs.Dosya_adı })">@pdfs.Dosya_adı </a>
+                                     </div>
+                                 
+                                    
+                                
+                                    }
+
+
+                                }
+
+                                 
+                                    </div>
+
+                                         <br />
+                                }
+
+
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </body>
+    </html>
+
+
+
+
+    
+    <script>
+        function func() {
+            var x = document.getElementById("myDIV");
+
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>

@@ -1,0 +1,3 @@
+migrate -a C:\Users\mertm\Desktop\Eogrenme\Eogrenme\bin\Eogrenme.dll -db MySql -conn "Data Source=127.0.0.1;Database=eo_sema;uid=root;pwd=1998murat;"
+
+migrate -a C:\Users\gslie\OneDrive\Masaüstü\Eogrenme\bin\Eogrenme.dll -db MySql -conn "Data Source=127.0.0.1;Database=eo_schema;uid=root;pwd=emin123;"

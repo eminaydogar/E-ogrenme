@@ -1,0 +1,19 @@
+﻿
+
+
+<link rel="stylesheet" href="~/Content/ogrencicss/templatemo-style.css" />
+<div class="cd-slider-nav">
+    <nav>
+        <span class="cd-marker item-1"></span>
+        <ul>
+            <li class="selected"><a href="@Url.Action("Index","Ogrenci")"><div class="image-icon"><img src="~/images/home-icon.png" style="margin-top:18px;"></div><h6>Anasayfa</h6></a></li>
+            <li class="selected"><a href="@Url.Action("Mylesson","Ogrenci")"><div class="image-icon"><img src="~/images/icons8-winrar-52.png"style="margin-top:13px;"></div><h6>Derslerim</h6></a></li>
+            <li class="selected"><a href="@Url.Action("MyTeacher","Ogrenci")"><div class="image-icon"><img src="~/images/about-icon.png"style="margin-top:18px;"></div><h6> Ders Talebi</h6></a></li>
+            <li class="selected"><a href="@Url.Action("Vote","Ogrenci")"><div class="image-icon"><img src="~/images/featured-icon.png"style="margin-top:15px;"></div><h6>Yorum Paneli</h6></a></li>
+            <li class="selected"><a href="@Url.Action("Logout","Login")"><div class="image-icon"><img src="~/images/close.png"style="margin-top:25px;"></div><h6>Çıkış</h6></a></li>
+        </ul>
+    </nav>
+</div>
+<div>
+    @RenderBody()
+</div>

@@ -1,0 +1,96 @@
+﻿@model Eogrenme.Areas.Admin.ViewModels.UserArray
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="~/Areas/Content/popup.css" rel="stylesheet"/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <form action="#" method="get">
+                <div class="input-group">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-list-search">
+                <thead>
+                    <tr>
+                        <th>Bölüm ID</th>
+                        <th> Bölüm Adı</th>
+                      <th> Bölümü Sil </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bolumler in Model.bolumler)
+                    {
+
+                        <tr>
+                            <td>@bolumler.BolumID</td>
+                            <td>@bolumler.BolumAd</td>
+                            <td>  <a href="@Url.Action("DeleteSection","Section",new { BolumID=bolumler.BolumID })"> <button type="button" class="btn btn-danger" onclick="uyari()">Bölümü Sil</button> </a> </td>
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/Areas/Content/user.js"></script>
+<script language="javascript">
+    function uyari() {
+
+        alert("Silme işlemi yapıyorsunuz, bu işlemin geri dönüşü olmaz!");
+    }</script>
+
+
+
+
+<button class="open-button" style="background-color:forestgreen" onclick="openForm()">Yeni Bir Bölüm Ekle</button>
+
+<div class="form-popup" id="myForm">
+   
+    
+    <div class="form-container" style="background-color:dimgray">
+        @using (Html.BeginForm("AddSection", "Section", FormMethod.Post))
+        {
+
+            <label for="BölümID"><b>Bölüm Numarası</b></label>
+            <input type="text" placeholder="Bölüm Numarasını gir" name="Bolumid" required>
+
+            <label for="Bölüm Adı"><b>Bölüm Adı</b></label>
+            <input type="text" placeholder="Bölüm Adı gir" name="Bolumad" required>
+
+            <button type="submit" class="btn">Yeni Bölümü Ekle </button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Kapat</button>
+
+        }
+
+    </div>
+    
+</div>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+
